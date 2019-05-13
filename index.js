@@ -1,14 +1,12 @@
 const LA1 = require('living-as-one-encoder');
 
-let _autoShare = false;
-let _autoShareDoubles = false;
 let _history = [];
 
 /**
  * Log in to living as one
  * @param {string} userName
  * @param {string} password
- * @param {function} callback
+ * @param {null|function} callback
  * @return {Promise<void>}
  */
 function login(userName, password, callback=null)
@@ -16,24 +14,44 @@ function login(userName, password, callback=null)
     return LA1.login(userName, password, callback);
 }
 
+
+/**
+ * Check if name has been created before
+ * @param {string} name
+ * @return {boolean}
+ */
+function wasCreatedBefore(name)
+{
+    return _history.indexOf(name) > -1;
+
+}
+
+/**
+ * Create cue and share if it is a new cue
+ * @param {string} name
+ * @param {null|function} callback
+ * @return {Promise<void>}
+ */
+function createAndShareIfNew(name, callback=null)
+{
+    const duplicate = wasCreatedBefore(name);
+    return create(name, !duplicate, callback);
+}
+
 /**
  * Create cue
  * @param {string} name
- * @param {boolean} alwaysShare
- * @param {function} callback
+ * @param {boolean} shared
+ * @param {null|function} callback
  * @return {Promise<void>}
  */
-function create(name, alwaysShare=false, callback=null) {
-    const duplicate = _history.contains(name);
-    let share = _autoShare;
-
-    if (duplicate && !_autoShareDoubles && !alwaysShare)
-        share = false;
-
+function create(name, shared=false, callback=null) {
     _history.push(name);
-    return LA1.createLiveCue(name, share, callback);
+    return LA1.createLiveCue(name, shared, callback);
 }
 
 //  Exports
 exports.login = login;
+exports.wasCreatedBefore = wasCreatedBefore;
 exports.create = create;
+exports.createAndShareIfNew = createAndShareIfNew;
