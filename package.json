@@ -1,6 +1,6 @@
 {
   "name": "living-as-one-cues",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node controller for setting cues in Living As One",
   "main": "index.js",
   "scripts": {
