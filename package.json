@@ -13,7 +13,7 @@
   "author": "Nick Timman <info@emptygalaxy.com> (https://emptygalaxy.com)",
   "license": "ISC",
   "dependencies": {
-    "living-as-one-encoder": "^0.2.6"
+    "living-as-one-encoder": "^0.2.8"
   },
   "bugs": {
     "url": "https://github.com/emptygalaxy/living-as-one-cues/issues"
