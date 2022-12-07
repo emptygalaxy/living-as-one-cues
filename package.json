@@ -1,10 +1,17 @@
 {
   "name": "living-as-one-cues",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Node controller for setting cues in Living As One",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "test.js"
+    "test": "mocha --require ts-node/register 'src/**/*.spec.ts'",
+    "build": "npm run compile",
+    "compile": "tsc",
+    "lint": "eslint 'src/**'",
+    "fix": "eslint --fix 'src/**'",
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "npm run lint && npm audit && npm run build",
+    "postpublish": "git push"
   },
   "repository": {
     "type": "git",
@@ -13,14 +20,32 @@
   "author": "Nick Timman <info@emptygalaxy.com> (https://emptygalaxy.com)",
   "license": "ISC",
   "dependencies": {
-    "living-as-one-encoder": "^0.2.8"
+    "@typescript-eslint/eslint-plugin": "^5.45.1",
+    "@typescript-eslint/parser": "^5.45.1",
+    "chai": "^4.3.7",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "living-as-one-encoder": "^0.2.6",
+    "mocha": "^10.1.0",
+    "prettier": "^2.8.0",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
   },
   "bugs": {
     "url": "https://github.com/emptygalaxy/living-as-one-cues/issues"
   },
   "homepage": "https://github.com/emptygalaxy/living-as-one-cues#readme",
-  "devDependencies": {},
   "keywords": [
     "livingasone"
-  ]
+  ],
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/eslint": "^8.4.10",
+    "@types/mocha": "^10.0.1",
+    "@types/prettier": "^2.7.1",
+    "@types/rimraf": "^3.0.2"
+  }
 }
