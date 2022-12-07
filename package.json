@@ -27,7 +27,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "living-as-one-encoder": "^1.0.0",
+    "living-as-one-encoder": "^1.0.1",
     "mocha": "^10.1.0",
     "prettier": "^2.8.0",
     "rimraf": "^3.0.2",
